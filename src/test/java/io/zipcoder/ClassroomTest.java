@@ -92,4 +92,32 @@ public class ClassroomTest {
         System.out.println(removed);
         Assert.assertArrayEquals(actual, expected);
     }
+
+    @Test
+    public void testGetStudentByScore() {
+
+        Double[] s1Scores = { 100.0, 100.0 };
+        Double[] s2Scores = { 200.0, 200.0 };
+        Double[] s3Scores = { 150.0, 150.0 };
+        Double[] s4Scores = { 150.0, 150.0 };
+
+        ArrayList<Double> s1ScoresList = new ArrayList<>(List.of(s1Scores));
+        ArrayList<Double> s2ScoresList = new ArrayList<>(List.of(s2Scores));
+        ArrayList<Double> s3ScoresList = new ArrayList<>(List.of(s3Scores));
+        ArrayList<Double> s4ScoresList = new ArrayList<>(List.of(s4Scores));
+
+        Student s1 = new Student("Bob", "one", s1ScoresList);
+        Student s2 = new Student("Tyler", "two", s2ScoresList);
+        Student s3 = new Student("Fred", "three", s3ScoresList);
+        Student s4 = new Student("Anthony", "four", s4ScoresList);
+
+        Student[] students = {s1,s2,s3,s4};
+        Classroom classroom = new Classroom(students);
+
+        String expected = Arrays.toString(classroom.getStudents());
+
+        System.out.println(Arrays.toString(classroom.getStudentsByScore()));
+
+        Assert.assertNotEquals(expected, Arrays.toString(classroom.getStudentsByScore()));
+    }
 }

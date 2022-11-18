@@ -1,6 +1,7 @@
 package io.zipcoder;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Student {
 
@@ -59,5 +60,9 @@ public class Student {
     public String toString(){
         return String.format("Student Name: %s %s\n> Average Scores: %s\n> %s", this.firstName, this.lastName, (int) getAverageExamScore(), getExamScores());
     }
+
+    public static Comparator<Student> nameComparator = Comparator.comparing(o -> o.firstName);
+    public static Comparator<Student> scoreComparator = (o1, o2) -> (int) Math.round(o2.getAverageExamScore() - o1.getAverageExamScore());
+
 
 }
