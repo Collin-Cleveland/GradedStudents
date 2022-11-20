@@ -1,11 +1,10 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Classroom {
+
+    private HashMap<Student, String> gb = new HashMap<>();
 
     public Student[] students;
     int maxNumberOfStudents;
@@ -93,6 +92,34 @@ public class Classroom {
     public void sortStudentsByScore() {
         sortStudentsByName();
         Arrays.sort(students, Student.scoreComparator);
+    }
+
+    public HashMap<Student, String> getGradeBook() {
+
+        this.students = getStudentsByScore();
+
+        for (int i = 0; i < students.length; i++) {
+            double percentile = 0;
+            double rank = students.length - (i + 1);
+            percentile = (rank / students.length) * 100.0;
+            if (percentile >= 90) {
+                //A
+                gb.put(students[i], "A");
+            } else if (percentile <= 89 && percentile >= 71) {
+                //B
+                gb.put(students[i], "B");
+            } else if (percentile <= 70 && percentile >= 50) {
+                //c
+                gb.put(students[i], "C");
+            } else if (percentile <= 49 && percentile >= 11) {
+                //D
+                gb.put(students[i], "D");
+            } else {
+                //F
+                gb.put(students[i], "F");
+            }
+        }
+        return gb;
     }
 
 

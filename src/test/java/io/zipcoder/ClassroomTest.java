@@ -3,9 +3,7 @@ package io.zipcoder;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ClassroomTest {
 
@@ -119,5 +117,42 @@ public class ClassroomTest {
         System.out.println(Arrays.toString(classroom.getStudentsByScore()));
 
         Assert.assertNotEquals(expected, Arrays.toString(classroom.getStudentsByScore()));
+    }
+
+    @Test
+    public void getGradeBookTest_B() {
+
+        Double[] s1Scores = { 100.0, 100.0 };
+        Double[] s2Scores = { 50.0, 50.0 };
+        Double[] s3Scores = { 75.0, 75.0 };
+        Double[] s4Scores = { 80.0, 80.0 };
+        Double[] s5Scores = { 90.0, 90.0 };
+
+        ArrayList<Double> s1ScoresList = new ArrayList<>(List.of(s1Scores));
+        ArrayList<Double> s2ScoresList = new ArrayList<>(List.of(s2Scores));
+        ArrayList<Double> s3ScoresList = new ArrayList<>(List.of(s3Scores));
+        ArrayList<Double> s4ScoresList = new ArrayList<>(List.of(s4Scores));
+        ArrayList<Double> s5ScoresList = new ArrayList<>(List.of(s5Scores));
+
+        Student s1 = new Student("Bob", "one", s1ScoresList);
+        Student s2 = new Student("Tyler", "two", s2ScoresList);
+        Student s3 = new Student("Fred", "three", s3ScoresList);
+        Student s4 = new Student("Anthony", "four", s4ScoresList);
+        Student s5 = new Student("Jack", "five", s5ScoresList);
+
+        Student[] students = {s1,s2,s3,s4,s5};
+        Classroom classroom = new Classroom(students);
+
+        HashMap<Student, String> gb = classroom.getGradeBook();
+        System.out.println(Collections.singletonList(gb));
+
+        String expected = "B";
+        String actual = gb.get(s1);
+
+
+
+        Assert.assertEquals(actual, expected);
+
+
     }
 }
